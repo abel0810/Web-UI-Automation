@@ -1,23 +1,29 @@
-const { Builder, By, Key, until } = require('selenium-webdriver');
+const { Builder, By } = require('selenium-webdriver');
+require('chromedriver');
+const assert = require('assert');
 
-(async function saucedemoTest() {
-  let driver = await new Builder().forBrowser('chrome').build();
-  try {
+describe('SauceDemo UI Automation', function () {
+  let driver;
+
+  before(async function () {
+    driver = await new Builder().forBrowser('chrome').build();
     await driver.get('https://www.saucedemo.com/');
-
-    // Login
+   
     await driver.findElement(By.id('user-name')).sendKeys('standard_user');
     await driver.findElement(By.id('password')).sendKeys('secret_sauce');
     await driver.findElement(By.id('login-button')).click();
+    await driver.sleep(2000);
+  });
 
-    await driver.sleep(2000); // Tunggu halaman selesai load
+  it('should sort products from A to Z', async function () {
+    const sortElement = await driver.findElement(By.className('product_sort_container'));
+    await sortElement.sendKeys('Name (A to Z)');
+    const value = await sortElement.getAttribute('value');
+    console.log('Sort value:', value);
+    assert.equal(value, 'az');
+  });
 
-    // Sort produk dari A-Z
-    let sortDropdown = await driver.findElement(By.className('product_sort_container'));
-    await sortDropdown.sendKeys('Name (A to Z)');
-
-    await driver.sleep(2000); // Tunggu sorting selesai
-  } finally {
+  after(async function () {
     await driver.quit();
-  }
-})();
+  });
+});
