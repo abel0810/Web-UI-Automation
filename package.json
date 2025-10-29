@@ -1,16 +1,14 @@
 {
-  "name": "web-automation",
-  "version": "1.0.0",
-  "description": "Project untuk tugas Web UI Automation",
-  "main": "login_test.js",
-  "scripts": {
-    "start": "node login_test.js",
-    "test": "mocha login_test.js"
-  },
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "@percy/cli": "^1.31.4",
+    "@percy/webdriverio": "^3.3.1",
+    "@wdio/cli": "^9.20.0",
+    "@wdio/local-runner": "^9.20.0",
+    "@wdio/mocha-framework": "^9.20.0",
+    "@wdio/spec-reporter": "^9.20.0",
+    "@wdio/visual-service": "^9.0.0"
   },
-  "keywords": [],
-  "author": "Abel",
-  "license": "ISC"
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.js"
+  }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "web-automation",
+  "version": "1.0.0",
+  "description": "Project untuk tugas Web UI Automation",
+  "main": "login_test.js",
+  "scripts": {
+    "start": "node login_test.js",
+    "test": "mocha login_test.js"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "keywords": [],
+  "author": "Abel",
+  "license": "ISC"
+}
